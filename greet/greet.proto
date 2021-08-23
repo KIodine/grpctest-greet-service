@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+// The namespace when other proto file imports.
+package greet;
+
+// optionally import proto files, relative to where `protoc` and `-I <path>` at.
+
+// The name user do import in Golang, make sure you
+// did invoke `go mod init <proj>`!
+// format: "<proj>/<pkg>"
+option go_package = "grpcb/greet";
+
+message Greet {
+    string name = 1;    // must be number > 0;
+    string message = 10;
+}

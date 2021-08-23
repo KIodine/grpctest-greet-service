@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package greetsvc;
+
+option go_package = "grpcb/greetsvc";
+
+import "greet/greet.proto";
+
+message GreetRequest {
+    string name = 1;
+}
+
+message GreetGathered {
+    repeated greet.Greet greets = 1;
+}
+service GreetingService {
+    rpc GreetOnce(GreetRequest) returns (greet.Greet) {}
+    rpc GreetAtOnce(stream GreetRequest) returns (GreetGathered) {}
+    rpc GreetMany(GreetRequest) returns (stream greet.Greet) {}
+    rpc GreetStream(stream GreetRequest) returns (stream greet.Greet) {}
+}
